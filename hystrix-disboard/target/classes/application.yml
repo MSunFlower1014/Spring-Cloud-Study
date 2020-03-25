@@ -1,0 +1,8 @@
+debug: true
+server:
+  port: 24547
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["health","info","hystrix.stream"]

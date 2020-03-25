@@ -1,0 +1,19 @@
+server:
+  port: 24548
+spring:
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: true
+        serviceName: microservice-api-gateway
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 15s
+        tags: ma-/microservice-api-gateway
+        instanceId: microservice-api-gateway:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+zuul:
+  routes:
+    user:                                               # 可以随便写，在zuul上面唯一即可；当这里的值 = service-id时，service-id可以不写。
+      path: /ma-user/**                                    # 想要映射到的路径
+      service-id: ma-spring-consumer            # Eureka中的serviceId

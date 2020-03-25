@@ -1,0 +1,16 @@
+server:
+  application:
+    name: ma-spring-zipkin    # 对应microservice-config-server所获取的配置文件的{application}
+  port: 24551
+spring:
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8510
+      discovery:
+        register: true
+        serviceName: ${server.application.name}
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 15s
+        tags: ma-/${server.application.name}
+        instanceId: ${server.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}

@@ -1,0 +1,15 @@
+debug: true
+server:
+  port: 24546
+spring:
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: true
+        serviceName: ${spring.application.name}
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 15s
+        tags: ma-/${spring.application.name}
+        instanceId: springCloudFeign奥

@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: ma-spring-consumer    # 对应microservice-config-server所获取的配置文件的{application}
